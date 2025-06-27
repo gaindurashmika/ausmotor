@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Aus Motor - Japanese Vehicles</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    :root {
+      --dark-blue-bg: #0f172a;
+      --card-blue-bg: #1e293b;
+      --accent-blue: #0ea5e9;
+      --text-primary: #f8fafc;
+      --text-secondary: #cbd5e1;
+      --text-dark: #0f172a;
+      --white-bg: #ffffff;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--dark-blue-bg);
+      color: var(--text-primary);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* Header & Navigation */
+    .main-header {
+      padding: 20px 0;
+      background-color: var(--dark-blue-bg);
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 40px;
+      font-size: 1rem;
+    }
+
+    .nav-links a {
+      color: var(--text-secondary);
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--text-primary);
+    }
+
+    .btn {
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn-primary {
+      background-color: var(--accent-blue);
+      color: var(--text-primary);
+    }
+
+    .btn-primary:hover {
+      filter: brightness(1.1);
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 80px 0;
+      display: flex;
+      align-items: center;
+      gap: 40px;
+    }
+
+    .hero-content {
+      flex: 1;
+    }
+
+    .hero-title {
+      font-size: 3.5rem;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+
+    .hero-subtitle {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      max-width: 450px;
+      margin-bottom: 30px;
+    }
+
+    .hero-image {
+      flex: 1;
+    }
+
+    .hero-image img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    /* Featured Vehicles Section */
+    .featured-vehicles {
+      padding: 80px 0;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+      color: var(--text-primary);
+    }
+
+    .search-bar {
+      background-color: var(--card-blue-bg);
+      border: 1px solid #334155;
+      padding: 12px 20px;
+      border-radius: 8px;
+      width: 100%;
+      max-width: 400px;
+      color: var(--text-primary);
+      font-size: 1rem;
+      margin-bottom: 30px;
+    }
+
+    .search-bar::placeholder {
+      color: var(--text-secondary);
+    }
+
+    .vehicle-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+    }
+
+    .vehicle-card {
+      background-color: var(--card-blue-bg);
+      border-radius: 12px;
+      overflow: hidden;
+      padding: 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .vehicle-card:hover {
+      transform: scale(1.03);
+    }
+
+    .vehicle-card img {
+      max-width: 100%;
+      height: auto;
+      margin-bottom: 20px;
+      border-radius: 8px;
+    }
+
+    .vehicle-card h3 {
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .vehicle-card p {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    .color-options {
+      margin-top: 15px;
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .color-dot {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: border-color 0.3s ease;
+    }
+
+    .color-dot:hover {
+      border-color: var(--accent-blue);
+    }
+
+    /* Why Choose Us Section */
+    .why-choose-us {
+      background-color: var(--white-bg);
+      color: var(--text-dark);
+      padding: 80px 0;
+    }
+
+    .why-choose-us .container {
+      display: flex;
+      align-items: center;
+      gap: 80px;
+    }
+
+    .why-choose-us-content {
+      flex: 1;
+    }
+
+    .why-choose-us-list {
+      flex: 1;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+    }
+
+    .why-choose-us-list li {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      font-size: 1.2rem;
+      font-weight: 500;
+    }
+
+    .why-choose-us-list .icon {
+      width: 28px;
+      height: 28px;
+    }
+
+    /* Floating Chat Button */
+    .chat-btn {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background-color: var(--accent-blue);
+      color: var(--text-primary);
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      font-size: 28px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.3s ease;
+      z-index: 1000;
+    }
+
+    .chat-btn:hover {
+      background-color: #0b82c9;
+    }
+
+    /* Chat Dialog Box */
+    .chat-dialog {
+      position: fixed;
+      bottom: 100px;
+      right: 30px;
+      width: 320px;
+      max-width: 90vw;
+      background-color: var(--white-bg);
+      color: var(--text-dark);
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+      z-index: 1000;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    /* Header of chat dialog */
+    .chat-header {
+      background-color: var(--accent-blue);
+      color: var(--text-primary);
+      padding: 15px;
+      font-weight: 600;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .chat-close-btn {
+      background: none;
+      border: none;
+      color: var(--text-primary);
+      font-size: 22px;
+      cursor: pointer;
+    }
+
+    /* Chat messages area */
+    .chat-messages {
+      padding: 15px;
+      height: 200px;
+      overflow-y: auto;
+      font-size: 14px;
+      line-height: 1.4;
+      color: #333;
+      background-color: #f9f9f9;
+    }
+
+    /* Chat input area */
+    .chat-input-area {
+      border-top: 1px solid #ddd;
+      padding: 10px 15px;
+      display: flex;
+      gap: 10px;
+    }
+
+    .chat-input {
+      flex-grow: 1;
+      padding: 8px 12px;
+      border: 1px solid #ccc;
+      border-radius: 20px;
+      font-size: 14px;
+    }
+
+    .chat-send-btn {
+      background-color: var(--accent-blue);
+      border: none;
+      color: var(--text-primary);
+      padding: 8px 16px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background-color 0.3s ease;
+    }
+
+    .chat-send-btn:hover {
+      background-color: #0b82c9;
+    }
+  </style>
+</head>
+<body>
+  <header class="main-header">
+    <div class="container">
+      <nav class="navbar">
+        <div class="logo">Aus Motor</div>
+        <ul class="nav-links">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Our Vehicles</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Contact</a></li>
+          <li><a href="#">Blog</a></li>
+        </ul>
+        <a href="#" class="btn btn-primary">Chat with us</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero-section">
+      <div class="container hero">
+        <div class="hero-content">
+          <h1 class="hero-title">Quality Japanese Vehicles, Delivered with Trust</h1>
+          <p class="hero-subtitle">
+            Your journey begins with Aus Motor — Reliable, Affordable, Reconditioned.
+          </p>
+          <a href="#" class="btn btn-primary">Browse All Vehicles</a>
+        </div>
+        <div class="hero-image">
+          <img
+            src="https://i.ibb.co/L5sJk0j/hero-car.png"
+            alt="Featured Japanese Car"
+          />
+        </div>
+      </div>
+    </section>
+
+    <section class="featured-vehicles">
+      <div class="container">
+        <h2 class="section-title">Featured Vehicles</h2>
+        <input
+          type="search"
+          id="vehicle-search"
+          class="search-bar"
+          placeholder="Search by model, year, or price..."
+        />
+        <div class="vehicle-grid" id="vehicle-grid"></div>
+      </div>
+    </section>
+
+    <section class="why-choose-us">
+      <div class="container">
+        <div class="why-choose-us-content">
+          <h2 class="section-title">Why Choose Us?</h2>
+        </div>
+        <ul class="why-choose-us-list">
+          <li>
+            <svg
+              class="icon"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12Zm13.36-1.814a.75.75 0 1 0-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 0 0-1.06 1.06l2.25 2.25a.75.75 0 0 0 1.14-.094l3.75-5.25Z"
+                clip-rule="evenodd"
+              />
+            </svg>
+            <span>Handpicked Japanese Imports</span>
+          </li>
+          <li>
+            <svg
+              class="icon"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12Zm13.36-1.814a.75.75 0 1 0-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 0 0-1.06 1.06l2.25 2.25a.75.75 0 0 0 1.14-.094l3.75-5.25Z"
+                clip-rule="evenodd"
+              />
+            </svg>
+            <span>Verified Condition Reports</span>
+          </li>
+          <li>
+            <svg
+              class="icon"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12Zm13.36-1.814a.75.75 0 1 0-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 0 0-1.06 1.06l2.25 2.25a.75.75 0 0 0 1.14-.094l3.75-5.25Z"
+                clip-rule="evenodd"
+              />
+            </svg>
+            <span>Trusted by 1000+ Customers</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <!-- Floating Chat Button -->
+  <button class="chat-btn" id="chat-btn" aria-label="Open chat">💬</button>
+
+  <!-- Chat Dialog -->
+  <div
+    class="chat-dialog"
+    id="chat-dialog"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="chat-title"
+  >
+    <div class="chat-header">
+      <span id="chat-title">Aus Motor Chat</span>
+      <button class="chat-close-btn" id="chat-close-btn" aria-label="Close chat">
+        &times;
+      </button>
+    </div>
+    <div class="chat-messages" id="chat-messages">
+      <p>Hi! How can we assist you today?</p>
+    </div>
+    <div class="chat-input-area">
+      <input
+        type="text"
+        id="chat-input"
+        class="chat-input"
+        placeholder="Type your message..."
+        aria-label="Chat message input"
+      />
+      <button id="chat-send-btn" class="chat-send-btn">Send</button>
+    </div>
+  </div>
+
+  <script>
+    // Vehicles data array
+    const vehicles = [
+      {
+        id: 'aqua2018',
+        model: 'Toyota Aqua 2018',
+        price: 4500000,
+        colors: [
+          {
+            hex: '#c0c0c0',
+            img: 'https://i.ibb.co/M6YqNn4/aqua-silver.png',
+          },
+          {
+            hex: '#000000',
+            img: 'https://i.ibb.co/HFps4Wp/aqua-black.png',
+          },
+          {
+            hex: '#1e90ff',
+            img: 'https://i.ibb.co/KqDTTFz/aqua-blue.png',
+          },
+        ],
+      },
+      {
+        id: 'vezel2017',
+        model: 'Honda Vezel 2017',
+        price: 5200000,
+        colors: [
+          {
+            hex: '#ffffff',
+            img: 'https://i.ibb.co/3sH0r6M/vezel-white.png',
+          },
+          {
+            hex: '#000000',
+            img: 'https://i.ibb.co/K7FRsYM/vezel-black.png',
+          },
+          {
+            hex: '#b0c4de',
+            img: 'https://i.ibb.co/3zFf4pn/vezel-sky.png',
+          },
+        ],
+      },
+      {
+        id: 'axio2015',
+        model: 'Toyota Axio 2015',
+        price: 1040000,
+        colors: [
+          {
+            hex: '#000000',
+            img: 'https://i.ibb.co/hK7JqfF/axio-black.png',
+          },
+          {
+            hex: '#808080',
+            img: 'https://i.ibb.co/6bJdknm/axio-grey.png',
+          },
+          {
+            hex: '#ffffff',
+            img: 'https://i.ibb.co/WcG6KYF/axio-white.png',
+          },
+        ],
+      },
+      {
+        id: 'fit2016',
+        model: 'Honda Fit 2016',
+        price: 3930000,
+        colors: [
+          {
+            hex: '#1e90ff',
+            img: 'https://i.ibb.co/dD9Y2S1/fit-blue.png',
+          },
+          {
+            hex: '#ff4500',
+            img: 'https://i.ibb.co/xkzPwf5/fit-orange.png',
+          },
+          {
+            hex: '#008000',
+            img: 'https://i.ibb.co/mC2QpBf/fit-green.png',
+          },
+        ],
+      },
+      {
+        id: 'premio2014',
+        model: 'Toyota Premio 2014',
+        price: 5550000,
+        colors: [
+          {
+            hex: '#ffd700',
+            img: 'https://i.ibb.co/8YqYjQx/premio-gold.png',
+          },
+          {
+            hex: '#800000',
+            img: 'https://i.ibb.co/h7FvM7N/premio-maroon.png',
+          },
+          {
+            hex: '#2f4f4f',
+            img: 'https://i.ibb.co/2c96jRb/premio-dark.png',
+          },
+        ],
+      },
+      {
+        id: 'leaf2019',
+        model: 'Nissan Leaf 2019',
+        price: 3330000,
+        colors: [
+          {
+            hex: '#000000',
+            img: 'https://i.ibb.co/8816P3B/leaf-black.png',
+          },
+          {
+            hex: '#00ff00',
+            img: 'https://i.ibb.co/zQKdF42/leaf-green.png',
+          },
+          {
+            hex: '#ffffff',
+            img: 'https://i.ibb.co/wcZP4vq/leaf-white.png',
+          },
+        ],
+      },
+    ];
+
+    const vehicleGrid = document.getElementById('vehicle-grid');
+    const searchInput = document.getElementById('vehicle-search');
+
+    // Render vehicles based on data & filter text
+    function renderVehicles(filter = '') {
+      vehicleGrid.innerHTML = '';
+      const filteredVehicles = vehicles.filter((vehicle) => {
+        const lowerFilter = filter.toLowerCase();
+        return (
+          vehicle.model.toLowerCase().includes(lowerFilter) ||
+          vehicle.id.toLowerCase().includes(lowerFilter) ||
+          vehicle.price.toString().includes(lowerFilter)
+        );
+      });
+
+      if (filteredVehicles.length === 0) {
+        vehicleGrid.innerHTML = '<p>No vehicles found.</p>';
+        return;
+      }
+
+      filteredVehicles.forEach((vehicle) => {
+        const card = document.createElement('div');
+        card.className = 'vehicle-card';
+
+        let currentColorIndex = 0;
+
+        // Main image
+        const img = document.createElement('img');
+        img.src = vehicle.colors[currentColorIndex].img;
+        img.alt = `${vehicle.model} - Color`;
+        card.appendChild(img);
+
+        // Model name
+        const title = document.createElement('h3');
+        title.textContent = vehicle.model;
+        card.appendChild(title);
+
+        // Price formatted
+        const price = document.createElement('p');
+        price.textContent = `Rs. ${vehicle.price.toLocaleString()}`;
+        card.appendChild(price);
+
+        // Color options container
+        const colorsDiv = document.createElement('div');
+        colorsDiv.className = 'color-options';
+
+        vehicle.colors.forEach((color, index) => {
+          const colorDot = document.createElement('div');
+          colorDot.className = 'color-dot';
+          colorDot.style.backgroundColor = color.hex;
+          colorDot.title = `Color option ${index + 1}`;
+
+          colorDot.addEventListener('click', (e) => {
+            e.stopPropagation();
+            currentColorIndex = index;
+            img.src = vehicle.colors[currentColorIndex].img;
+          });
+
+          colorsDiv.appendChild(colorDot);
+        });
+
+        card.appendChild(colorsDiv);
+
+        // Click vehicle card to go to detail page with vehicle id param
+        card.addEventListener('click', () => {
+          window.location.href = `vehicle-detail.html?id=${vehicle.id}`;
+        });
+
+        vehicleGrid.appendChild(card);
+      });
+    }
+
+    // Initial render
+    renderVehicles();
+
+    // Search filter event
+    searchInput.addEventListener('input', () => {
+      renderVehicles(searchInput.value);
+    });
+
+    // Floating Chat Widget JS
+    const chatBtn = document.getElementById('chat-btn');
+    const chatDialog = document.getElementById('chat-dialog');
+    const chatCloseBtn = document.getElementById('chat-close-btn');
+    const chatMessages = document.getElementById('chat-messages');
+    const chatInput = document.getElementById('chat-input');
+    const chatSendBtn = document.getElementById('chat-send-btn');
+
+    chatBtn.addEventListener('click', () => {
+      chatDialog.style.display = 'flex';
+      chatInput.focus();
+      chatBtn.style.display = 'none';
+    });
+
+    chatCloseBtn.addEventListener('click', () => {
+      chatDialog.style.display = 'none';
+      chatBtn.style.display = 'flex';
+    });
+
+    function appendMessage(message, sender = 'user') {
+      const p = document.createElement('p');
+      p.textContent = message;
+      if (sender === 'user') {
+        p.style.fontWeight = '600';
+        p.style.color = 'var(--accent-blue)';
+      } else {
+        p.style.color = '#333';
+      }
+      chatMessages.appendChild(p);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    chatSendBtn.addEventListener('click', () => {
+      const msg = chatInput.value.trim();
+      if (!msg) return;
+      appendMessage(msg, 'user');
+      chatInput.value = '';
+
+      // Simple bot response simulation
+      setTimeout(() => {
+        appendMessage('Thank you for reaching out! We will get back to you soon.', 'bot');
+      }, 1000);
+    });
+
+    chatInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        chatSendBtn.click();
+      }
+    });
+  </script>
+</body>
+</html>
